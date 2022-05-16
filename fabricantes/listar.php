@@ -53,10 +53,8 @@
                     <th>Nome</th>
                 </tr>
             </thead>
-        </table>
 
         <tbody>
-
             <?php
                $sql = "SELECT id, nome FROM fabricantes";
 
@@ -69,13 +67,23 @@
             // Captura os resultados
             $resultados = $consulta -> fetchAll(PDO::FETCH_ASSOC);
 
-            echo "<pre>";
-            var_dump($resultados);
-            echo "</pre>";
+            // echo "<pre>";
+            // var_dump($resultados);
+            // echo "</pre>";
+    
+            foreach ($resultados as $fabricante) {
             ?>
+                <tr > 
+                    <td><?=$fabricante["id"]?></td>
+                    <td><?=$fabricante["nome"]?></td>
+                </tr>
 
+            <?php
+            }
+            ?>
         </tbody>
 
+        </table>
     </div>
 
 </body>
