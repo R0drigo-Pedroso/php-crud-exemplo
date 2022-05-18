@@ -37,6 +37,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
+                    <th colspan="2">Operações</th>
                 </tr>
             </thead>
 
@@ -47,6 +48,17 @@
                 <tr > 
                     <td><?=$fabricante["id"]?></td>
                     <td><?=$fabricante["nome"]?></td>
+                    <td>
+                        <a href="atualizar.php?id=<?=$fabricante["id"]?>"> <!-- Criação de link dinamico  -->
+                            Atualizar
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="excluir.php?id=<?=$fabricante["id"]?>">
+                            Excluir
+                        </a>
+                    </td>
                 </tr>
 
             <?php

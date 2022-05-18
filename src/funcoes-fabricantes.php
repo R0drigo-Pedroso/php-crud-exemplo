@@ -40,3 +40,39 @@ function inserirFabricante (PDO $conexao, string $nome):void {
         die ("Erro: " .$erro -> getMessage());
     }
 }
+
+
+// Atualizar um Fabricante
+
+function lerUmFabricante(PDO $conexao, int $id):array {
+    $sql = "SELECT id, nome FROM fabricantes WHERE id = :id";
+
+    try {
+        $consulta = $conexao -> prepare($sql);
+        $consulta -> bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta -> execute();
+
+        $resultado = $consulta -> fetch(PDO::FETCH_ASSOC);
+
+    }catch (PDOException $erro){
+        die ("Erro: " .$erro -> getMessage());
+    }
+
+    return $resultado;
+}
+
+
+// Atualizar um Fabricante UPDATE
+
+function atualizarFabricante(PDO $conexao, int $id, string $nome):void {
+    $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
+
+    try {
+        $consulta = $conexao -> prepare($sql);
+        $consulta -> bindParam(':nome', $nome, PDO::PARAM_STR);
+        $consulta -> bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta -> execute();
+    } catch (PDOException $erro) {
+        die ("Erro: " .$erro -> getMessage());
+    }
+}
