@@ -21,7 +21,13 @@
 
         <p>
             <a href="inserir.php">
-                Lendo e carregando todos os fabricantes
+                Volta para a pagina de INSERIR
+            </a>
+        </p>
+
+        <p>
+            <a href="../index.php">
+                Pagina inicial
             </a>
         </p>
 
