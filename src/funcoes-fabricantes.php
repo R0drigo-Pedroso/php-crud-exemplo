@@ -37,6 +37,6 @@ function inserirFabricante (PDO $conexao, string $nome):void {
         $consulta -> execute();
 
     } catch (Exception $erro) {
-        die ("Erro: " .$erro -> getMessage())
+        die ("Erro: " .$erro -> getMessage());
     }
 }
