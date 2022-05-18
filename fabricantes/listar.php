@@ -19,6 +19,11 @@
 
         <h2>Lendo e Carregando todos os fabricantes</h2>
 
+        <p>
+            <a href="inserir.php">
+                Lendo e carregando todos os fabricantes
+            </a>
+        </p>
 
         <table>
             <caption>Lista de Fabricantes</caption>

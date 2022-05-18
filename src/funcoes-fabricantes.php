@@ -4,10 +4,10 @@
 // Leitura de dados dos fabricantes
 
 function lerFabricantes(PDO $conexao):array {
-        try {
-            // string
-        $sql = "SELECT id, nome FROM fabricantes";
-
+         // string
+         $sql = "SELECT id, nome FROM fabricantes";
+             
+    try {
         //    Preparação do comando
         $consulta = $conexao -> prepare($sql);
 
@@ -26,6 +26,17 @@ function lerFabricantes(PDO $conexao):array {
 
 // Inserir um Fabricante
 
-function inserirFabricante (PDO $conexao, string $nome):array {
-    
+function inserirFabricante (PDO $conexao, string $nome):void {
+    $sql = "INSERT INTO Fabricantes (nome) VALUES (:nome)"; // :qualquer_coisa - named parameters
+
+    try {
+        $consulta = $conexao -> prepare($sql);
+        
+         /* bindParam ('nome do paramentro', $variavel_com_valor, COnstante de verificação) */
+        $consulta -> bindParam(':nome', $nome, PDO::PARAM_STR); // PDO::PARAM_STR - string 
+        $consulta -> execute();
+
+    } catch (Exception $erro) {
+        die ("Erro: " .$erro -> getMessage())
+    }
 }

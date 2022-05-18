@@ -30,8 +30,19 @@
                 <input type="text" name="nome" id="nome">
             </p>
             <button type="submit" name="inserir">Inserir Fabricante</button>
-        </form>
+        
+        <p>
+            <a href="listar.php">
+                Voltar para lista de fabricantes
+            </a>
+        </p>
 
+        <p>
+            <a href="../index.php">
+                Home
+            </a>
+        </p>
+        </form>
     </div>
 </body>
 </html>
