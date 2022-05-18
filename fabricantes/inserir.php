@@ -4,10 +4,13 @@
        require_once('../src/funcoes-fabricantes.php');
     
         // Capturando o que foi digitado no campo nome
-       $nome = $_POST['nome'];
+       //$nome = $_POST['nome'];
+        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
 
         inserirFabricante($conexao, $nome);
-        
+
+        header('Location: listar.php');
+
     }
 ?>
 <!DOCTYPE html>
