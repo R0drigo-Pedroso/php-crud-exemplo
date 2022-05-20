@@ -62,7 +62,7 @@
                     </td>
 
                     <td>
-                        <a href="excluir.php?id=<?=$fabricante["id"]?>">
+                        <a href="excluir.php?id=<?=$fabricante["id"]?> onclick="confirmarExcluir">
                             Excluir
                         </a>
                     </td>
