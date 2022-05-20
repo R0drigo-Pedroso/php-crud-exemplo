@@ -62,10 +62,13 @@
                     </td>
 
                     <td>
-                        <a href="excluir.php?id=<?=$fabricante["id"]?> onclick="confirmarExcluir">
-                            Excluir
-                        </a>
+                        <a class="excluir" href="excluir.php?id=<?=$fabricante["id"]?>">Excluir</a>
                     </td>
+
+                    <!-- Usando o onclick direto no link, realizamos o mesmo efeito para excluir o fabricante
+                         <td>
+                        <a onclick="return confirm('Deseja excluir?')" href="excluir.php?id=<//?=$fabricante["id"]?>">Excluir</a>
+                    </td> -->
                 </tr>
 
             <?php
@@ -75,6 +78,24 @@
 
         </table>
     </div>
+
+
+    <!-- Código para executar a exluir linha dos link -->
+    <script>
+        const link = document.querySelectorAll('.excluir');
+        
+        for(let i = 0; i < link.length; i++) {
+            link[i].addEventListener('click', function(event) {
+                event.preventDefault();
+        
+                if(confirm('Deseja excluir?')) {
+                    location.href = this.href;
+                }
+            });
+        }
+
+    </script>
+
 
 </body>
 </html>

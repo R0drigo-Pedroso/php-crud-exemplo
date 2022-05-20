@@ -14,13 +14,6 @@ if (isset ($_POST ['exluir'])) {
     atualizarFabricante($conexao, $id, $nome);
 
     //header('Location: listar.php');
-
-    echo "<script>
-        function confirmarExcluir(){
-            if(confirm ("Tem certeza que quer exluir?")){
-                location.href = 'listar.php';
-            }
-        </script>";
     
        //header('Refresh:1; url=listar.php');
 
