@@ -12,10 +12,13 @@
         
         atualizarFabricante($conexao, $id, $nome);
 
-        header('Location: listar.php');
+        //header('Location: listar.php');
+
+        echo "<script>alert('Fabricante atualizado com sucesso!');</script>";
+        header('Refresh:1; url=listar.php');
+    
+        // header('Location: listar.php?status=atualizado');
     }
-
-
 ?>
 
 <!DOCTYPE html>

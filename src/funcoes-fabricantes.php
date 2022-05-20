@@ -2,7 +2,6 @@
     require_once "conecta.php";
 
 // Leitura de dados dos fabricantes
-
 function lerFabricantes(PDO $conexao):array {
          // string
          $sql = "SELECT id, nome FROM fabricantes";
@@ -25,7 +24,6 @@ function lerFabricantes(PDO $conexao):array {
 
 
 // Inserir um Fabricante
-
 function inserirFabricante (PDO $conexao, string $nome):void {
     $sql = "INSERT INTO Fabricantes (nome) VALUES (:nome)"; // :qualquer_coisa - named parameters
 
@@ -43,7 +41,6 @@ function inserirFabricante (PDO $conexao, string $nome):void {
 
 
 // Atualizar um Fabricante
-
 function lerUmFabricante(PDO $conexao, int $id):array {
     $sql = "SELECT id, nome FROM fabricantes WHERE id = :id";
 
@@ -63,7 +60,6 @@ function lerUmFabricante(PDO $conexao, int $id):array {
 
 
 // Atualizar um Fabricante UPDATE
-
 function atualizarFabricante(PDO $conexao, int $id, string $nome):void {
     $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
 
@@ -75,4 +71,18 @@ function atualizarFabricante(PDO $conexao, int $id, string $nome):void {
     } catch (PDOException $erro) {
         die ("Erro: " .$erro -> getMessage());
     }
+}
+
+// Excluir um Fabricante
+function excluirFabricante(PDO $conexao, int $id):void {
+    $sql = "DELETE FROM fabricantes WHERE id = :id";
+
+    try {
+        $consulta = $conexao -> prepare($sql);
+        $consulta -> bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta -> execute();
+    } catch (Exception $erro) {
+        die ("Erro: " .$erro -> getMessage());
+    }
+
 }

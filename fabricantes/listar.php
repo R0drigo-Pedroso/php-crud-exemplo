@@ -31,6 +31,13 @@
             </a>
         </p>
 
+        <!-- Aparecer mensagem para o usuario mostrando o realizamento do processo -->
+        <!-- <//?php if (isset ($_GET['status']) && $_GET['status'] == 'atualizado'){ ?>
+            <p>
+                Fabricantes Atualizado com sucesso!
+            </p>
+        <//?php } ?> -->
+    
         <table>
             <caption>Lista de Fabricantes</caption>
             <thead>
