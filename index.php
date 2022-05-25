@@ -23,7 +23,7 @@
        </li>
 
        <li>
-           <a href="">
+           <a href="produtos/listar.php">
                Produtos
            </a>
        </li>
