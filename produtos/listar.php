@@ -1,3 +1,13 @@
+<?php
+require_once "../src/funcoes-produtos.php";
+
+$listaDeProdutos = lerProdutos ($conexao);
+
+// para pre visualizar no navegador
+dump($listaDeProdutos);
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,15 +23,26 @@
             <a href="../index.php">Home</a>
         </h1>
 
+        <hr>
+
         <h2>Lendo e Carregando todos os produtos</h2>
 
         <p>
             <a href="inserir">Inserir um novo prduto</a>
         </p>
+
+        <div class="produtos">
+            <article>
+                <h3>Nome do produtos</h3>
+                <p>Preço...</p>
+                <p>Quantidade...</p>
+                <p>Descrição...</p>
+                <p>Fabricante...</p>
+            </article>
+        </div>
+
     </div>
-
-
-    
+   
    
 </body>
 </html>
