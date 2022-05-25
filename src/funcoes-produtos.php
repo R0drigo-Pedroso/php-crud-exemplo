@@ -5,7 +5,7 @@ require_once "conecta.php";
 
     function lerProdutos(PDO $conexao):array {
         $sql = "SELECT id, nome, descricao, preco, quantidade, fabricantes_id FROM produtos ORDER BY nome";
-    
+
         try {
             $consulta = $conexao->prepare($sql);
             $consulta->execute();
@@ -17,8 +17,6 @@ require_once "conecta.php";
 
         return $resultado;
     }
-
-
     // Funções utilitárias
 
     function dump ($dados) {
@@ -26,6 +24,3 @@ require_once "conecta.php";
         var_dump($dados);
         echo "</pre>";
     }
-
-
-    // Monstra produtos

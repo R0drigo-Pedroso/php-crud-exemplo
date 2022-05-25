@@ -4,7 +4,7 @@ require_once "../src/funcoes-produtos.php";
 $listaDeProdutos = lerProdutos ($conexao);
 
 // para pre visualizar no navegador
-dump($listaDeProdutos);
+// dump($listaDeProdutos);
 ?>
 
 
@@ -15,6 +15,7 @@ dump($listaDeProdutos);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos - Lista</title>
+    <link rel="stylesheet" href="../fabricantes/css/esilo.css">
 </head>
 <body>
     
@@ -31,14 +32,24 @@ dump($listaDeProdutos);
             <a href="inserir">Inserir um novo prduto</a>
         </p>
 
-        <div class="produtos">
+        <div class="produtos p-style">
+    
+        <?php foreach ($listaDeProdutos as $produto) {?>
             <article>
-                <h3>Nome do produtos</h3>
-                <p>Preço...</p>
-                <p>Quantidade...</p>
-                <p>Descrição...</p>
-                <p>Fabricante...</p>
+                <h3>Nome do Produto: <?= $produto["nome"]?></h3>
+                <p>Preço: <?= $produto["preco"]?></p>
+                <p>Quantidade: <?= $produto["quantidade"]?></p>
+                <p>Descrição: <?= $produto["descricao"]?></p>
+                <p>Fabricante: <?= $produto["fabricantes_id"]?></p>
+    
+                <p>
+                    <a href="atualizar.php?id=<?=$produto["id"]?>">Atualizar</a>
+                    <a href="excluir.php?id=<?=$produto["id"]?>">Excluir</a>
+                </p>
             </article>
+        <?php
+        }
+        ?>
         </div>
 
     </div>
