@@ -36,7 +36,8 @@
                 <input type="text" name="nome" id="nome">
             </p>
             <button type="submit" name="inserir">Inserir Fabricante</button>
-        
+        </form>
+
         <p>
             <a href="listar.php">
                 Voltar para lista de fabricantes
@@ -48,7 +49,6 @@
                 Home
             </a>
         </p>
-        </form>
     </div>
 </body>
 </html>
