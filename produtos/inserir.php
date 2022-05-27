@@ -1,7 +1,8 @@
 <?php 
-    require_once "../src/funcoes-produtos.php";
+   require_once "../src/funcoes-fabricantes.php";
 
-    $listaDeProdutos = lerProdutos ($conexao);
+// 
+   $listaDeFabricantes = lerFabricantes($conexao);
 ?>
 
 <!DOCTYPE html>
@@ -36,8 +37,8 @@
                 <select name="fabricante" id="fabricante" required>
                     <option value=""></option>
 
-                    <?php foreach($fabricantes as $fabricante){ ?>
-                        <option value=""></option>
+                    <?php foreach($listaDeFabricantes as $fabricante){ ?>
+                        <option value="<?= $fabricante["id"]?>"><?=$fabricante["nome"]?></option>
                      <?php }; ?>
 
                     <!-- opções de fabricantes existentes no BANCO -->
