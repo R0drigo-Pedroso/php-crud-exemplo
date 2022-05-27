@@ -3,19 +3,6 @@
 //    listaDeFabricantes que ser usado dentro do foreach
    $listaDeFabricantes = lerFabricantes($conexao);
 
-if(isset($_POST['inserir'])){
-    require_once "../src/funcoes-produtos.php";
-
-    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-    $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_INT);
-    $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);
-    $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
-    $fabricantes_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
-
-    inserirProduto($conexao, $nome, $preco, $quantidade, $descricao, $fabricantes_id);
-
-    header("Location:listar.php");
-}
 ?>
 
 <!DOCTYPE html>
@@ -30,13 +17,13 @@ if(isset($_POST['inserir'])){
 
 </head>
 <body>
-    <div class=inserirProduto>
+    <div class="inserirProduto">
         <h1>Produtos | INSERT</h1>
         <hr>
         <form action="" method="post">
             <p>
                 <label for="nome">Nome:</label>
-                <input type="text" name="nome" id="nome" required>
+                <input value="<?=$nome['nome']?> type="text" name="nome" id="nome" required>
             </p>
             <p>
                 <label for="preco">Preço:</label>
@@ -64,8 +51,8 @@ if(isset($_POST['inserir'])){
                 <label for="descricao">Descrição:</label> <br>
                 <textarea required name="descricao" id="descricao" cols="30" rows="3"></textarea>
             </p>
-            <button type="submit" name="inserir">
-                Inserir produto</button>
+            <button type="submit" name="atualizar">
+                atualizar produto</button>
         </form>
 
         <p>

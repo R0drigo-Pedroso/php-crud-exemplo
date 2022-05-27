@@ -1,7 +1,29 @@
 <?php 
+   require_once "../src/funcoes-produtos.php";
    require_once "../src/funcoes-fabricantes.php";
+
 //    listaDeFabricantes que ser usado dentro do foreach
-   $listaDeFabricantes = lerFabricantes($conexao);
+    $listaDeFabricantes = lerFabricantes($conexao);
+   
+    // para pre visualizar no navegador e sanitizando (segurança)
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+    // chamando a função e recebendo os dados do Produtos
+    $produto = lerUmProduto($conexao, $id);
+
+    if (isset($_POST['atualizar'])) {
+        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+        $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
+        $usado = filter_input(INPUT_POST, 'usado', FILTER_SANITIZE_NUMBER_INT);
+        $fabricante_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
+
+        lerUmProduto($conexao, $id, $nome, $preco, $descricao, $categoria_id, $usado, $fabricante_id);
+
+        echo "<script>alert('Produto atualizado com sucesso!');</script>";
+        header('Refresh:1; url=listar.php');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -22,33 +44,40 @@
         <form action="" method="post">
             <p>
                 <label for="nome">Nome:</label>
-                <input value="" type="text" name="nome" id="nome" required>
+                <input value="<?=$produto['nome']?>" type="text" name="nome" id="nome" required>
             </p>
             <p>
                 <label for="preco">Preço:</label>
-                <input type="number" name="preco" id="preco" 
+                <input value="<?=$produto['preco']?>" type="number" name="preco" id="preco" 
                 min="0" max="10000" step="0.01" required>
             </p>    
             <p>
                 <label for="quantidade">Quantidade:</label>
-                <input type="number" name="quantidade" id="quantidade" 
+                <input value="<?=$produto['quantidade']?>" type="number" name="quantidade" id="quantidade" 
                 min="0" max="100" required>
             </p>    
             <p>
                 <label for="fabricante_id">Fabricante:</label>
-                <select name="fabricante_id" id="fabricante_id" required>
+                <select value="<?=$produto['id']?>" name="fabricante_id" id="fabricante_id" required>
                     <option value=""></option>
 
                     <?php foreach($listaDeFabricantes as $fabricante){ ?>
-                        <option value="<?= $fabricante["id"]?>"><?=$fabricante["nome"]?></option>
-                     <?php }; ?>
+                        <option 
+                        
+                        if (isset($produto['fabricante_id'] == $fabricante['id'])) {
+                            selected
+                        }
+                        
+                        value="<?= $fabricante["id"]?>"><?=$fabricante["nome"]?></option>
+                     <?php 
+                    }; ?>
 
                     <!-- opções de fabricantes existentes no BANCO -->
                 </select>
             </p>
             <p>
                 <label for="descricao">Descrição:</label> <br>
-                <textarea required name="descricao" id="descricao" cols="30" rows="3"></textarea>
+                <textarea required name="descricao" id="descricao" cols="30" rows="3"><?=$produto['descricao']?>"</textarea>
             </p>
             <button type="submit" name="atualizar">
                 Atualizar</button>

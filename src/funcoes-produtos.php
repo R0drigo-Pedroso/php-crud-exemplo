@@ -66,3 +66,20 @@ require_once "conecta.php";
             die("Erro: " .$erro->getMessage());
         }
     }
+
+    // Atualizar dados no banco de dados - UPDATE produtos
+    function lerUmProduto(PDO $conexao, int $id):array {
+        $sql = "SELECT id, nome, preco, quantidade, descricao, fabricantes_id FROM produtos WHERE id = :id";
+
+        try {
+            $consulta = $conexao->prepare($sql);
+            $consulta->bindParam(":id", $id, PDO::PARAM_INT);
+            $consulta->execute();
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        } catch(Exception $erro) {
+            die("Erro: " .$erro->getMessage());
+        }
+
+        return $resultado;
+    }
