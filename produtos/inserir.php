@@ -1,7 +1,7 @@
 <?php 
    require_once "../src/funcoes-fabricantes.php";
 
-// 
+//    listaDeFabricantes que ser usado dentro do foreach
    $listaDeFabricantes = lerFabricantes($conexao);
 ?>
 
@@ -62,3 +62,11 @@
     </div>
 </body>
 </html>
+
+
+<!-- 
+    O foreach é utilizado para percorrer todos os elementos de uma coleção.
+    o nome que sera atribuido ou seja que nesse momento esta sendo usado como "listaDeFabricante" 
+    tem que ser o mesmo que esta sendo chamado no arquivo "listar.php"
+    e que está sendo usado no top da pagina dentro do PHP inicial
+ -->
