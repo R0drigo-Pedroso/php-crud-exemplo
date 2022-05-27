@@ -1,0 +1,26 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fafafa;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.inserirProduto form {
+    width: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.inserirProduto form p {
+    margin-bottom: 5px;
+}

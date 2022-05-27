@@ -2,20 +2,6 @@
    require_once "../src/funcoes-fabricantes.php";
 //    listaDeFabricantes que ser usado dentro do foreach
    $listaDeFabricantes = lerFabricantes($conexao);
-
-if(isset($_POST['inserir'])){
-    require_once "../src/funcoes-produtos.php";
-
-    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-    $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_INT);
-    $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);
-    $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
-    $fabricantes_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
-
-    inserirProduto($conexao, $nome, $preco, $quantidade, $descricao, $fabricantes_id);
-
-    header("Location:listar.php");
-}
 ?>
 
 <!DOCTYPE html>
@@ -24,14 +10,14 @@ if(isset($_POST['inserir'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos - Inserir</title>
+    <title>Produtos - Atualizar</title>
 
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
-    <div class=inserirProduto>
-        <h1>Produtos | INSERT</h1>
+    <div class="container inserirProduto">
+        <h1>Produtos | SELECT / UPDATE</h1>
         <hr>
         <form action="" method="post">
             <p>
@@ -64,8 +50,8 @@ if(isset($_POST['inserir'])){
                 <label for="descricao">Descrição:</label> <br>
                 <textarea required name="descricao" id="descricao" cols="30" rows="3"></textarea>
             </p>
-            <button type="submit" name="inserir">
-                Inserir produto</button>
+            <button type="submit" name="atualizar">
+                Atualizar Produtos</button>
         </form>
 
         <p>
