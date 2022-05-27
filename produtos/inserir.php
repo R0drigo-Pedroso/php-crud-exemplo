@@ -25,9 +25,13 @@ if(isset($_POST['inserir'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos - Inserir</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/estilo.css">
+
 </head>
 <body>
-    <div class="container">
+    <div>
         <h1>Produtos | INSERT</h1>
         <hr>
         <form action="" method="post">
