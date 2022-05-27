@@ -64,7 +64,7 @@
                     <?php foreach($listaDeFabricantes as $fabricante){ ?>
                         <option 
                         
-                        if (isset($produto['fabricante_id'] == $fabricante['id'])) {
+                        if ($produto['fabricante_id'] == $fabricante['id']) {
                             selected
                         }
                         
