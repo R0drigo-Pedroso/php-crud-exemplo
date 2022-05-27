@@ -12,16 +12,3 @@ body {
 
 
 /* Style de produtos */
-
-.p-style {
-    display: flex;
-}
-
-.p-style article {
-    line-height: 1.5rem;
-    padding: 1rem;
-    margin: 1rem;
-    width: auto;
-    background: #ccc;
-    
-}

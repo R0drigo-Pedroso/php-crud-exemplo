@@ -1,8 +1,21 @@
 <?php 
    require_once "../src/funcoes-fabricantes.php";
-
 //    listaDeFabricantes que ser usado dentro do foreach
    $listaDeFabricantes = lerFabricantes($conexao);
+
+if(isset($_POST['inserir'])){
+    require_once "../src/funcoes-produtos.php";
+
+    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+    $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_INT);
+    $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);
+    $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
+    $fabricantes_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
+
+    inserirProduto($conexao, $nome, $preco, $quantidade, $descricao, $fabricantes_id);
+
+    header("Location:listar.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,8 +46,8 @@
                 min="0" max="100" required>
             </p>    
             <p>
-                <label for="fabricante">Fabricante:</label>
-                <select name="fabricante" id="fabricante" required>
+                <label for="fabricante_id">Fabricante:</label>
+                <select name="fabricante_id" id="fabricante_id" required>
                     <option value=""></option>
 
                     <?php foreach($listaDeFabricantes as $fabricante){ ?>
@@ -62,11 +75,3 @@
     </div>
 </body>
 </html>
-
-
-<!-- 
-    O foreach é utilizado para percorrer todos os elementos de uma coleção.
-    o nome que sera atribuido ou seja que nesse momento esta sendo usado como "listaDeFabricante" 
-    tem que ser o mesmo que esta sendo chamado no arquivo "listar.php"
-    e que está sendo usado no top da pagina dentro do PHP inicial
- -->
