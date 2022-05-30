@@ -6,4 +6,4 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 excluirProduto($conexao, $id);
 
-header('Location: listar.php');
+header('Location:listar.php');

@@ -3,6 +3,20 @@
 //    listaDeFabricantes que ser usado dentro do foreach
    $listaDeFabricantes = lerFabricantes($conexao);
 
+   if(isset($_POST['inserir'])){
+    require_once '../src/funcoes-produtos.php';
+    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+    
+    $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+    $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);
+    $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
+    $fabricante_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
+
+    inserirProduto($conexao, $nome, $preco, $quantidade, $descricao, $fabricante_id);
+
+    header("location:listar.php");
+   }
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +65,7 @@
                 <label for="descricao">Descrição:</label> <br>
                 <textarea required name="descricao" id="descricao" cols="30" rows="3"></textarea>
             </p>
-            <button type="submit" name="atualizar">
+            <button type="submit" name="inserir">
                 Inserir produto</button>
         </form>
 
