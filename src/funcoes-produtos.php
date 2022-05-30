@@ -84,20 +84,34 @@ require_once "conecta.php";
 
     // Atualizar Produto
     function atualizarProduto(PDO $conexao, int $id, string $nome, float $preco, int $quantidade, string $descricao, int $fabricantes_id):void {
-        $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade, descricao = :descricao, fabricantes_id = :fabricantes_id WHERE id = :id";
+    $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade, descricao = :descricao, fabricantes_id = :fabricante_id WHERE id = :id";
 
-        try {
-            $consulta = $conexao->prepare($sql);
-            $consulta->bindParam(":id", $id, PDO::PARAM_INT);
-            $consulta->bindParam(":nome", $nome, PDO::PARAM_STR);
-            $consulta->bindParam(":preco", $preco, PDO::PARAM_STR);
-            $consulta->bindParam(":quantidade", $quantidade, PDO::PARAM_INT);
-            $consulta->bindParam(":descricao", $descricao, PDO::PARAM_STR);
-            $consulta->bindParam(":fabricantes_id", $fabricantes_id, PDO::PARAM_INT);
-
-            $consulta->execute();
-            
-        } catch (Exception $erro) {
-            die("Erro: " .$erro->getMessage());
-        }
+    try {
+        $consulta = $conexao->prepare($sql);
+        $consulta->bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta->bindParam(':nome', $nome, PDO::PARAM_STR);
+        $consulta->bindParam(':preco', $preco, PDO::PARAM_STR);
+        $consulta->bindParam(':quantidade', $quantidade, PDO::PARAM_INT);
+        $consulta->bindParam(':descricao', $descricao, PDO::PARAM_STR);
+        $consulta->bindParam(':fabricante_id', $fabricantes_id, PDO::PARAM_INT);
+        
+        $consulta->execute();
+    } catch (Exception $erro) {
+        die("Erro: ". $erro->getMessage());
     }
+}
+
+
+// Excluir um Fabricante
+function excluirProduto(PDO $conexao, int $id):void {
+    $sql = "DELETE FROM produtos WHERE id = :id";
+
+    try {
+        $consulta = $conexao -> prepare($sql);
+        $consulta -> bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta -> execute();
+    } catch (Exception $erro) {
+        die ("Erro: " .$erro -> getMessage());
+    }
+
+}

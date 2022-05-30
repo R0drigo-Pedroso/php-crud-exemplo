@@ -12,15 +12,16 @@
     $produto = lerUmProduto($conexao, $id);
 
     if (isset($_POST['atualizar'])) {
+
+                                        // os paramentro dentro do 'nome' são os mesmos do formulário ou seja, e o name="nome" do formulario
         $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-        $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $preco = filter_input(INPUT_POST, 'preco',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);
         $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
-        $usado = filter_input(INPUT_POST, 'usado', FILTER_SANITIZE_NUMBER_INT);
-        $fabricante_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
+        $fabricantes_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
 
-        lerUmProduto($conexao, $id, $nome, $preco, $descricao, $categoria_id, $usado, $fabricante_id);
+        atualizarProduto($conexao, $id, $nome, $preco, $quantidade, $descricao, $fabricantes_id);
 
-        echo "<script>alert('Produto atualizado com sucesso!');</script>";
         header('Refresh:1; url=listar.php');
     }
 

@@ -23,7 +23,7 @@
         <form action="" method="post">
             <p>
                 <label for="nome">Nome:</label>
-                <input value="<?=$nome['nome']?> type="text" name="nome" id="nome" required>
+                <input type="text" name="nome" id="nome" required>
             </p>
             <p>
                 <label for="preco">Preço:</label>
@@ -52,7 +52,7 @@
                 <textarea required name="descricao" id="descricao" cols="30" rows="3"></textarea>
             </p>
             <button type="submit" name="atualizar">
-                atualizar produto</button>
+                Inserir produto</button>
         </form>
 
         <p>
