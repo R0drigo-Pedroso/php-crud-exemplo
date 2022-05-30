@@ -2,7 +2,7 @@
 
 require_once "conecta.php";
 
-
+    // Função para inserir produtos
     function lerProdutos(PDO $conexao):array {
         //$sql = "SELECT id, nome, descricao, preco, quantidade, fabricantes_id FROM produtos";
 
