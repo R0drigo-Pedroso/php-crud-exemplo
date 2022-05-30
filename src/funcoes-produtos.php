@@ -40,7 +40,6 @@ require_once "conecta.php";
     }
 
     // Configuração de moeda
-
     function formaataMoeda(float $valor):string {
         return "R$ " .number_format($valor, 2, ",", ".");
         
@@ -48,7 +47,6 @@ require_once "conecta.php";
 
 
     // Inserir dados no banco de dados - INSERT produtos
-
     function inserirProduto(PDO $conexao, string $nome, float $preco, int $quantidade, string $descricao, int $fabricantes_id):void { // void indica sem retorno
         $sql = "INSERT INTO produtos (nome, preco, quantidade, descricao, fabricantes_id) VALUES (:nome, :preco, :quantidade, :descricao, :fabricantes_id)";  
 
@@ -82,4 +80,24 @@ require_once "conecta.php";
         }
 
         return $resultado;
+    }
+
+    // Atualizar Produto
+    function atualizarProduto(PDO $conexao, int $id, string $nome, float $preco, int $quantidade, string $descricao, int $fabricantes_id):void {
+        $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade, descricao = :descricao, fabricantes_id = :fabricantes_id WHERE id = :id";
+
+        try {
+            $consulta = $conexao->prepare($sql);
+            $consulta->bindParam(":id", $id, PDO::PARAM_INT);
+            $consulta->bindParam(":nome", $nome, PDO::PARAM_STR);
+            $consulta->bindParam(":preco", $preco, PDO::PARAM_STR);
+            $consulta->bindParam(":quantidade", $quantidade, PDO::PARAM_INT);
+            $consulta->bindParam(":descricao", $descricao, PDO::PARAM_STR);
+            $consulta->bindParam(":fabricantes_id", $fabricantes_id, PDO::PARAM_INT);
+
+            $consulta->execute();
+            
+        } catch (Exception $erro) {
+            die("Erro: " .$erro->getMessage());
+        }
     }
