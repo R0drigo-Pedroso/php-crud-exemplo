@@ -9,10 +9,8 @@ use CrudPoo\Fabricante;
         $fabricante = new Fabricante();    
 
         // Usando o setter para definir o nome do novo fabricante
-        $fabricante->setNome(
-            filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS)
-        );
-
+        $fabricante->setNome($_POST['nome']);
+    
         $fabricante->inserirFabricante();
 
         header('Location: listar.php');

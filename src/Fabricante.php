@@ -76,7 +76,7 @@ Final class Fabricante {
 
     public function setNome(string $nome)
     {
-        $this->nome = $nome;
+        $this->nome = filter_var($nome, FILTER_SANITIZE_SPECIAL_CHARS);
 
     }
 }
