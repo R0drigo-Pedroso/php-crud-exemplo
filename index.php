@@ -9,10 +9,10 @@
 <body>
     
    <div class="container">
-       <h1>CRUD - Sistema Vendas</h1>
+       <h1>CRUD - Sistema Vendas (Versão POO)</h1>
        <hr>
 
-       <p>Operações de <b>Inserção</b>, <b>Leitura</b>, <b>Atualição</b> e <b>Exclusão</b> de dados<p>
+       <p><i>Versão usando Namespeces, Composer, Autoload, Classes, Métodos, Propriedades</i><p>
    </div>
 
    <ul>
