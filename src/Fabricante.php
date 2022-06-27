@@ -1,7 +1,7 @@
 <?php
 namespace CrudPoo;
 
-use PDO;
+use PDO, Exception;
 
 Final class Fabricante {
     private int $id;
@@ -15,6 +15,26 @@ Final class Fabricante {
         $this->conexao = Banco::conectar();
     }
 
+    // lerFabricantes é um método que retorna um array de fabricantes
+    public function lerFabricantes():array {
+        // string
+        $sql = "SELECT id, nome FROM fabricantes";
+            
+   try {
+       //    Preparação do comando
+       $consulta = $this->conexao -> prepare($sql);
+
+       // Execução do comando
+       $consulta -> execute();
+
+       // Captura os resultados
+       $resultados = $consulta -> fetchAll(PDO::FETCH_ASSOC);    
+   } catch (Exception $erro) {
+       die ("Erro na consulta ao banco de dados: " .$erro -> getMessage());
+   }
+
+        return $resultados;
+}
 
 
     
