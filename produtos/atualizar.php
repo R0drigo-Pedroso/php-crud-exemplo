@@ -71,7 +71,7 @@ use CrudPoo\Produto;
                     <?php foreach($listaDeFabricantes as $arrfabricante){ ?>
                         <option 
                         
-                        <?php if ($produto['fabricantes_id'] == $arrfabricante['id']) echo " selected"; ?>
+                        <?php if ($arrayproduto['fabricantes_id'] == $arrfabricante['id']) echo " selected"; ?>
                         
                         value="<?= $arrfabricante["id"]?>"><?=$arrfabricante["nome"]?></option>
                      <?php 
