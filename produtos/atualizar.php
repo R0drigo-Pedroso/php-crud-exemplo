@@ -1,26 +1,32 @@
-<?php 
-   require_once "../src/funcoes-produtos.php";
-   require_once "../src/funcoes-fabricantes.php";
+<?php
 
-//    listaDeFabricantes que ser usado dentro do foreach
-    $listaDeFabricantes = lerFabricantes($conexao);
+use CrudPoo\Fabricante;
+use CrudPoo\Produto;
+
+    require_once "../vendor/autoload.php";
+
+    //Caminho da leiturrae de dados - 
+    $fabricante = new Fabricante();
+    $listaDeFabricantes = $fabricante->lerFabricantes();
+    // final de comentario
+
+    $produto = new Produto();
+
+    $produto->setId($_GET['id']);
    
-    // para pre visualizar no navegador e sanitizando (segurança)
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-
     // chamando a função e recebendo os dados do Produtos
-    $produto = lerUmProduto($conexao, $id);
+    $arrayproduto = $produto->lerUmProduto();
 
     if (isset($_POST['atualizar'])) {
 
                                         // os paramentro dentro do 'nome' são os mesmos do formulário ou seja, e o name="nome" do formulario
-        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-        $preco = filter_input(INPUT_POST, 'preco',FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);
-        $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
-        $fabricantes_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
+        $produto->setNome ($_POST['nome']);
+        $produto->setPreco ($_POST['preco']);
+        $produto->setQuantidade ($_POST['quantidade']);
+        $produto->setDescricao ($_POST['descricao']);
+        $produto->setFabricantesId ($_POST['fabricantes_id']);
 
-        atualizarProduto($conexao, $id, $nome, $preco, $quantidade, $descricao, $fabricantes_id);
+        $produto->atualizarProduto();
 
         header('Refresh:1; url=listar.php');
     }
@@ -45,29 +51,29 @@
         <form action="" method="post">
             <p>
                 <label for="nome">Nome:</label>
-                <input value="<?=$produto['nome']?>" type="text" name="nome" id="nome" required>
+                <input value="<?=$arrayproduto['nome']?>" type="text" name="nome" id="nome" required>
             </p>
             <p>
                 <label for="preco">Preço:</label>
-                <input value="<?=$produto['preco']?>" type="number" name="preco" id="preco" 
+                <input value="<?=$arrayproduto['preco']?>" type="number" name="preco" id="preco" 
                 min="0" max="10000" step="0.01" required>
             </p>    
             <p>
                 <label for="quantidade">Quantidade:</label>
-                <input value="<?=$produto['quantidade']?>" type="number" name="quantidade" id="quantidade" 
+                <input value="<?=$arrayproduto['quantidade']?>" type="number" name="quantidade" id="quantidade" 
                 min="0" max="100" required>
             </p>    
             <p>
                 <label for="fabricante_id">Fabricante:</label>
-                <select value="<?=$produto['id']?>" name="fabricante_id" id="fabricante_id" required>
+                <select value="<?=$arrayproduto['id']?>" name="fabricante_id" id="fabricante_id" required>
                     <option value=""></option>
 
-                    <?php foreach($listaDeFabricantes as $fabricante){ ?>
+                    <?php foreach($listaDeFabricantes as $arrfabricante){ ?>
                         <option 
                         
-                        <?php if ($produto['fabricantes_id'] == $fabricante['id']) echo " selected"; ?>
+                        <?php if ($produto['fabricantes_id'] == $arrfabricante['id']) echo " selected"; ?>
                         
-                        value="<?= $fabricante["id"]?>"><?=$fabricante["nome"]?></option>
+                        value="<?= $arrfabricante["id"]?>"><?=$arrfabricante["nome"]?></option>
                      <?php 
                     }; ?>
 
@@ -76,7 +82,7 @@
             </p>
             <p>
                 <label for="descricao">Descrição:</label> <br>
-                <textarea required name="descricao" id="descricao" cols="30" rows="3"><?=$produto['descricao']?>"</textarea>
+                <textarea required name="descricao" id="descricao" cols="30" rows="3"><?=$arrayproduto['descricao']?>"</textarea>
             </p>
             <button type="submit" name="atualizar">
                 Atualizar</button>

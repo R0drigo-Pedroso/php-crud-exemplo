@@ -1,19 +1,24 @@
-<?php 
-   require_once "../src/funcoes-fabricantes.php";
-//    listaDeFabricantes que ser usado dentro do foreach
-   $listaDeFabricantes = lerFabricantes($conexao);
+<?php
+
+    use CrudPoo\{Fabricante, Produto};
+
+        require_once "../vendor/autoload.php";
+
+        $fabricante = new Fabricante();
+        $produto = new Produto();
+
+        $listaDeFabricantes = $fabricante->lerFabricantes();
 
    if(isset($_POST['inserir'])){
-    require_once '../src/funcoes-produtos.php';
-    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+    $produto->setNome($_POST['nome']);
     
-    $preco = filter_input(INPUT_POST, 'preco', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $produto->setPreco($_POST['preco']);
 
-    $quantidade = filter_input(INPUT_POST, 'quantidade', FILTER_SANITIZE_NUMBER_INT);
-    $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
-    $fabricante_id = filter_input(INPUT_POST, 'fabricante_id', FILTER_SANITIZE_NUMBER_INT);
+    $produto->setQuantidade($_POST['quantidade']);
+    $produto->setDescricao($_POST['descricao']);
+    $produto->setFabricantesId ($_POST['fabricante_id']);
 
-    inserirProduto($conexao, $nome, $preco, $quantidade, $descricao, $fabricante_id);
+    $produto->inserirProduto();
 
     header("location:listar.php");
    }
