@@ -1,16 +1,20 @@
 <?php
 
-    require_once('../src/funcoes-fabricantes.php');
+use CrudPoo\Fabricante;
 
-    // Obtendo o valor do parâmentro id
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+require_once '../vendor/autoload.php';
 
-    $nomefabricante = lerUmFabricante($conexao, $id);
+$fabricante = new Fabricante;
+
+// Obtendo o valor do parâmentro id
+    $fabricante->setId ($_GET['id']);
+
+    $arrayfabricante = $fabricante->lerUmFabricante();
 
     if (isset ($_POST ['atualizar'])) {
-        $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+        $fabricante->setNome ($_POST ['nome']);
         
-        atualizarFabricante($conexao, $id, $nome);
+        $fabricante->atualizarFabricante();
 
         //header('Location: listar.php');
 
@@ -39,7 +43,7 @@
             <input type="hidden" name="id" value="<?=$id?>">
             <p>
                 <label for="nome">Nome:</label>
-                <input value="<?=$nomefabricante['nome']?>" type="text" name="nome" id="nome">
+                <input value="<?=$arrayfabricante['nome']?>" type="text" name="nome" id="nome">
             </p>
             <button type="submit" name="atualizar">Atualizar Fabricante</button>
         

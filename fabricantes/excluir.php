@@ -1,21 +1,12 @@
-<?php 
+<?php
 
-require_once "../src/funcoes-fabricantes.php";
+use CrudPoo\Fabricante;
 
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+require_once "../vendor/autoload.php";
+$fabricante = new Fabricante;
 
-excluirFabricante($conexao, $id);
+$fabricante->setId($_GET['id']);
+
+$fabricante->excluirFabricante();
 
 header('Location: listar.php');
-
-if (isset ($_POST ['exluir'])) {
-    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
-    
-    atualizarFabricante($conexao, $id, $nome);
-
-    //header('Location: listar.php');
-    
-       //header('Refresh:1; url=listar.php');
-
-    // header('Location: listar.php?status=atualizado');
-}

@@ -54,10 +54,57 @@ Final class Fabricante {
     //Final inserirFabricante
 
 
+    // Atualizar um Fabricante
+    public function lerUmFabricante():array {
+        $sql = "SELECT id, nome FROM fabricantes WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao -> prepare($sql);
+            $consulta -> bindParam(':id', $this->id, PDO::PARAM_INT);
+            $consulta -> execute();
+
+            $resultado = $consulta -> fetch(PDO::FETCH_ASSOC);
+
+        }catch (Exception $erro){
+            die ("Erro: " .$erro -> getMessage());
+        }
+
+        return $resultado;
+    }
 
 
+    // Atualizar um Fabricante UPDATE
+    public function atualizarFabricante():void {
+        $sql = "UPDATE fabricantes SET nome = :nome WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao -> prepare($sql);
+            $consulta -> bindParam(':nome', $this->nome, PDO::PARAM_STR);
+            $consulta -> bindParam(':id', $this->id, PDO::PARAM_INT);
+            $consulta -> execute();
+        } catch (Exception $erro) {
+            die ("Erro: " .$erro -> getMessage());
+        }
+    }
+            // essa versão também pode ser usada
+            // $consulta -> bindParam(':nome', $this->getNome(), PDO::PARAM_STR);
+            // $consulta -> bindParam(':id', $this->getId(), PDO::PARAM_INT);
+ 
     
-    
+    // Excluir um Fabricante
+    public function excluirFabricante():void {
+        $sql = "DELETE FROM fabricantes WHERE id = :id";
+
+        try {
+            $consulta = $this->conexao -> prepare($sql);
+            $consulta -> bindParam(':id', $this->id, PDO::PARAM_INT);
+            $consulta -> execute();
+        } catch (Exception $erro) {
+            die ("Erro: " .$erro -> getMessage());
+        }
+
+    }
+
     public function getId(): int
     {
         return $this->id;
@@ -65,8 +112,7 @@ Final class Fabricante {
 
     public function setId(int $id)
     {
-        $this->id = $id;
-    
+        $this->id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);  
     }
 
     public function getNome(): string
@@ -80,3 +126,5 @@ Final class Fabricante {
 
     }
 }
+
+    
