@@ -45,7 +45,7 @@ use CrudPoo\Produto;
 
 </head>
 <body>
-    <div class="container inserirProduto">
+    <section class="container inserirProduto">
         <h1>Produtos | SELECT / UPDATE</h1>
         <hr>
         <form action="" method="post">
@@ -95,6 +95,6 @@ use CrudPoo\Produto;
             <p>
                 <a href="../index.php">Home</a>
             </p>
-    </div>
+    </section>
 </body>
 </html>
