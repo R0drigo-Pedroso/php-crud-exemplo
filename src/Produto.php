@@ -121,20 +121,7 @@ public function lerUmProduto():array {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
+    // Setters e Getters - Atribuir valores aos atributos
         public function getId(): int
         {
                 return $this->id;
