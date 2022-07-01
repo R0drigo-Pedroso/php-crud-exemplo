@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CrudPoo\\' => array($baseDir . '/src'),
+    'CrudConversoMoeda\\' => array($baseDir . '/diversos'),
 );

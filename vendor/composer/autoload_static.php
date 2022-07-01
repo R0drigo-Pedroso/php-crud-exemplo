@@ -10,6 +10,7 @@ class ComposerStaticInit6370bd81dec340d045a53431dd5e775e
         'C' => 
         array (
             'CrudPoo\\' => 8,
+            'CrudConversoMoeda\\' => 18,
         ),
     );
 
@@ -17,6 +18,10 @@ class ComposerStaticInit6370bd81dec340d045a53431dd5e775e
         'CrudPoo\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'CrudConversoMoeda\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/diversos',
         ),
     );
 
