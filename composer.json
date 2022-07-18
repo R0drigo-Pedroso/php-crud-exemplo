@@ -1,5 +1,8 @@
 {
     "autoload": {
-        
+        "psr-4": {}
+    },
+    "require": {
+        "dompdf/dompdf": "^2.0"
     }
 }
