@@ -4,6 +4,7 @@
 
 use CrudDiversos\Utilitarios;
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 require_once 'vendor/autoload.php';
 
@@ -27,7 +28,15 @@ $conteudo = <<<HTML
     </div>
 HTML;
 
-$dompdf = new Dompdf();
+$options = new Options();
+$options->set('defaultFont', 'Courier');
+$dompdf = new Dompdf($options);
+
+
+// $options = $dompdf->getOptions();
+// $options->setDefaultFont('verdana');
+// $dompdf->setOptions($options);
+
 $dompdf->loadHtml($conteudo);
 $dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
