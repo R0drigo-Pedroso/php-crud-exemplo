@@ -1,6 +1,9 @@
 {
-    "autoload": {
-        "psr-4": {}
+    "autoload" : {
+        "psr-4" : {
+            "CrudPoo\\" : "src/",
+            "CrudDiversos\\" : "diversos/"
+        }
     },
     "require": {
         "dompdf/dompdf": "^2.0"

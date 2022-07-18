@@ -23,6 +23,26 @@
             <a href="inserir.php">
                 Volta para a pagina de INSERIR
             </a>
+
+            <hr>
+
+            <?php
+                if (isset($_GET['exportarPDF'])){
+
+                    // Inicializando uma sessão PHP
+                    session_start();
+
+                    // Criando uma variavel de sessão
+                    $_SESSION['dados'] = $listaDeFabricantes;
+
+                    // Redirecionando para o script de exportação em PDF
+                    header("location: ../exportar-pdf.php");
+                }
+            ?>
+
+            <!-- Aparecer - flags/sinalizador com parâmetros exportarPDF -->
+            <a href="?exportarPDF">Exportar para PDF</a>
+
         </p>
 
         <p>
