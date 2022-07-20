@@ -1,3 +1,66 @@
+<?php
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+
+if(isset ($_POST['enviar'])){
+
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $assunto = $_POST['assunto'];
+    $mensagem = $_POST['mensagem'];
+
+
+    //Create an instance; passing `true` enables exceptions
+    $mail = new PHPMailer(true);
+    $mail->CharSet = 'utf8';
+
+    try {
+        
+        // Configuração do email
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = 'bb6b9957c9564c';
+        $mail->Password = 'f3c8b8b5e4fab5';
+
+        // Quem envia
+        $mail->setFrom('contato@example.com', 'Mailer');
+
+        // Quem recebe
+        $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+        
+        // Para quem responde 
+        $mail->addReplyTo($email, 'Retorno de contato');
+
+
+        // Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+       
+        // Set email format to HTML
+        $mail->Subject = "contato site - ".$assunto;
+   
+        // Corpo da mensagem em formato HTML
+        $mail->Body    = "<br>Nome: </br> $nome <br> <b>E-mail: <br> $email <br> <b>Assunto: <br> $assunto <br> <b>Mensagem: <br> $mensagem";
+        
+        // Corpo da mensagem em formato texto
+        $mail->AltBody = "Nome: $nome \n E-mail: $email \n Assunto: $assunto \n Mensagem: $mensagem";
+
+        $mail->send();
+        echo 'Message has been sent';
+    } catch (Exception $e) {
+        echo "Tente novamente, sua mensagem não presta. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,8 +83,8 @@
         </p>
 
         <p>
-            <label for="Assunto">Assunto:</label>
-            <select name="Assunto" id="Assunto" required>
+            <label for="assunto">Assunto:</label>
+            <select name="assunto" id="assunto" required>
                 <option value=""></option>
                 <option value="Duvidas">Dúvidas</option>
                 <option value="Reclamações">Reclamações</option>
@@ -34,7 +97,8 @@
             <textarea name="mensagem" id="mensagem" cols="30" rows="10" required></textarea>
         </p>
         
-        <input type="submit" value="Enviar"> 
+        <button type="submit" name="enviar">Enviar</button>
+
     </form>
 
     <p>
