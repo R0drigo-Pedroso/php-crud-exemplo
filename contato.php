@@ -23,18 +23,26 @@ if(isset ($_POST['enviar'])){
     try {
         
         // Configuração do email
+        // $mail->isSMTP();
+        // $mail->Host = 'smtp.mailtrap.io';
+        // $mail->SMTPAuth = true;
+        // $mail->Port = 2525;
+        // $mail->Username = 'bb6b9957c9564c';
+        // $mail->Password = 'f3c8b8b5e4fab5';
+
         $mail->isSMTP();
-        $mail->Host = 'smtp.mailtrap.io';
+        $mail->Host = 'smtp.titan.email';
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = 'bb6b9957c9564c';
-        $mail->Password = 'f3c8b8b5e4fab5';
+        $mail->Port = 465;
+        $mail->SMTPSecure = 'ssl'; 
+        $mail->Username = 'rodrigo@sunioweb.com.br';
+        $mail->Password = 'Teste@123';
 
         // Quem envia
-        $mail->setFrom('contato@example.com', 'Mailer');
+        $mail->setFrom('rodrigo@sunioweb.com.br', 'Mailer');
 
         // Quem recebe
-        $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+        $mail->addAddress('rodrigo@sunioweb.com.br', 'Joe User');     //Add a recipient
         
         // Para quem responde 
         $mail->addReplyTo($email, 'Retorno de contato');
